@@ -34,7 +34,7 @@ if(WIN32)
 
 else()
     # Postfix of so's:
-    set(PROJECT_DLLVERSION)   
+    set(PROJECT_DLLVERSION)
 #    SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_INSTALL_PREFIX}/lib/cmake/ /usr/lib/cmake)
 endif()
 
@@ -100,7 +100,7 @@ ENDIF()
 
 
 if(WIN32)
- 
+
 ELSE()
 find_package(OpenMP  )
 if (OPENMP_FOUND)
@@ -134,9 +134,10 @@ ADD_CUSTOM_TARGET(uninstall "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/c
 # ----------------------------------------------------------------------------
 # create configuration file from .in file (If you use windows take care with paths)
 # ----------------------------------------------------------------------------
+include(GNUInstallDirs)
 
-CONFIGURE_FILE("${PROJECT_SOURCE_DIR}/config.cmake.in" "${PROJECT_BINARY_DIR}/Find${PROJECT_NAME}.cmake")
-INSTALL(FILES "${PROJECT_BINARY_DIR}/Find${PROJECT_NAME}.cmake" DESTINATION lib/cmake/ )
+CONFIGURE_FILE("${PROJECT_SOURCE_DIR}/config.cmake.in" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config.cmake")
+INSTALL(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config.cmake" DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
 
 
 
